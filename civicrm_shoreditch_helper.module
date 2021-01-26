@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Contains civicrm_shoreditch_helper.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function civicrm_shoreditch_helper_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the civicrm_shoreditch_helper module.
+    case 'help.page.civicrm_shoreditch_helper':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The purpose of this module is to add the body tags which the Shoreditch CSS styles rely on to Drupal 8/9 CiviCRM admin pages.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function civicrm_shoreditch_helper_preprocess_html(array &$variables) {
+
+  // Get current route name and (CiviCRM) args parameter.
+  $name = \Drupal::routeMatch()->getRouteName();
+  $args = \Drupal::routeMatch()->getParameter('args');
+
+  // Get module from route name.
+  $segments = explode('.', $name);
+  $module = $segments[0];
+
+  // Is this a CiviCRM route and are arguments given?
+  if (($module == 'civicrm') && $args) {
+
+    // Since the body class of a sub-page inherits the args of its parent page(s) a prefix is initiated.
+    $prefix = '';
+
+    // Generate classes from arguments.
+    foreach ($args as &$arg) {
+      $page = (empty($prefix) ? $arg : $prefix.'-'.$arg);
+      $class = 'page-'.$page;
+
+      // Add body class to variables.
+      $variables['attributes']['class'][] = $class;
+
+      // Update prefix.
+      $prefix = $page;
+    }
+  }
+}
