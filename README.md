@@ -1,12 +1,12 @@
 # CiviCRM Shoreditch Helper
 
-CiviCRM Shoreditch Helper is a Drupal 8/9 module that adds certain body classes to CiviCRM admin pages.
-The Shoreditch CSS styles rely on body classes like `page-civicrm page-civicrm-contact page-civicrm-contact-view` which are present in Drupal 7 but not in Drupal 8/9.
+CiviCRM Shoreditch Helper is a Drupal 9/10 module that adds certain body classes to CiviCRM admin pages.
+The Shoreditch CSS styles rely on body classes like `page-civicrm page-civicrm-contact page-civicrm-contact-view` which are present in Drupal 7 but not in Drupal 9/10.
 This module sole pupose is to provide a hook_preprocess_html() function which adds these classes.
 
 ## Requirements
 
-* Drupal 9 (tested) or >= 8.8.0 (untested)
+* Drupal 9/10
 * CiviCRM
 * [CiviCRM Shoreditch theme](https://github.com/civicrm/org.civicrm.shoreditch)
 
