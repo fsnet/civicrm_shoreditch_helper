@@ -28,13 +28,18 @@ function civicrm_shoreditch_helper_help($route_name, RouteMatchInterface $route_
  */
 function civicrm_shoreditch_helper_preprocess_html(array &$variables) {
 
-  // Get current route name and (CiviCRM) args parameter.
+  // Get current route name.
   $name = \Drupal::routeMatch()->getRouteName();
-  $args = \Drupal::routeMatch()->getParameter('args');
+  if (empty($name)) {
+    return;
+  }
 
   // Get module from route name.
   $segments = explode('.', $name);
   $module = $segments[0];
+
+  // Get (CiviCRM) args parameter
+  $args = \Drupal::routeMatch()->getParameter('args');
 
   // Is this a CiviCRM route and are arguments given?
   if (($module == 'civicrm') && $args) {
