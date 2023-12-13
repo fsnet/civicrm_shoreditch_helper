@@ -1,7 +1,7 @@
 name: 'CiviCRM Shoreditch Helper'
 type: module
 description: 'The purpose of this module is to add the body tags which the Shoreditch CSS styles rely on to Drupal 8/9 CiviCRM admin pages.'
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9 || ^10
 package: 'CiviCRM'
 dependencies:
   - civicrm
